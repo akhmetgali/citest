@@ -20,9 +20,42 @@ jobs:
           command: |
             cd create-ec2
             terraform fmt
-
+  plan:
+    docker:
+      - image: hashicorp/terraform:light
+    steps:
       - run:
           name: Plan
           command: |
             cd create-ec2
             terraform plan -var-file=terraform.tfvars
+  apply:
+    docker:
+      - image: hashicorp/terraform:light
+    steps:
+      - run:
+          name: Apply
+          command: |
+            cd create-ec2
+            terraform apply -var-file=terraform.tfvars
+workflows:
+  version: 2
+  build_plan_approve_apply:
+    jobs:
+      - build
+      - plan:
+          requires:
+            - build
+      - approve:
+          type: approval
+          requires:
+            - plan
+          filters:
+            branches:
+              only: master
+      - apply-with-approval:
+          requires:
+            - approve
+          filters:
+            branches:
+              only: master
