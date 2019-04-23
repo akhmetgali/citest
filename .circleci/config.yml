@@ -77,7 +77,7 @@ workflows:
           filters:
             branches:
               only: master
-      - apply-with-approval:
+      - apply:
           requires:
             - approve
           filters:
