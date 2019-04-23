@@ -33,16 +33,14 @@ jobs:
       - run:
           name: Plan
           command: |
-            cd create-ec2
-            terraform plan -var-file=terraform.tfvars
+            terraform plan -var-file=create-ec2/terraform.tfvars
   apply:
     <<: *default_config
     steps:
       - run:
           name: Apply
           command: |
-            cd create-ec2
-            terraform apply -var-file=terraform.tfvars
+            terraform apply -var-file=create-ec2/terraform.tfvars
 
 workflows:
   version: 2
