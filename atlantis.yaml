@@ -5,7 +5,7 @@ projects:
     dir: create-ec2
     workspace: default
     terraform_version: v0.11.0
-    apply_requirements: [mergable]
+    apply_requirements: [mergeable]
     workflow: myworkflow
 workflows:
   myworkflow:
