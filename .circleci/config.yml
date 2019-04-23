@@ -1,10 +1,32 @@
 version: 2
-working_directory:
-  ./create-ec2
+
+references:
+base_image: &base_image
+              hashicorp/terraform:light
+working_directory: &working_directory
+                     ~/project
+default_config: &default_config
+  docker:
+    - image: *base_image
+  working_directory: *working_directory
+
+repo_cache_key: &repo_cache_key
+                  v1-repo-{{ .Branch }}-{{ .Revision }}
+
+# Step to restore repository from cache
+restore_repo: &restore_repo
+  restore_cache:
+    key: *repo_cache_key
+save_repo: &save_repo
+  save_cache:
+    key: *repo_cache_key
+    paths:
+      - *working_directory
+
+
 jobs:
   build:
-    docker:
-      - image: hashicorp/terraform:light
+    <<: *default_config
 
     steps:
       - checkout
@@ -20,9 +42,44 @@ jobs:
           command: |
             cd create-ec2
             terraform fmt
-
+      - *save_repo
+  plan:
+    <<: *default_config
+    steps:
+      - *restore_repo
       - run:
           name: Plan
           command: |
             cd create-ec2
             terraform plan -var-file=terraform.tfvars
+  apply:
+    <<: *default_config
+    steps:
+      - *restore_repo
+      - run:
+          name: Apply
+          command: |
+            cd create-ec2
+            terraform apply -var-file=terraform.tfvars
+
+workflows:
+  version: 2
+  build_plan_approve_apply:
+    jobs:
+      - build
+      - plan:
+          requires:
+            - build
+      - approve:
+          type: approval
+          requires:
+            - plan
+          filters:
+            branches:
+              only: master
+      - apply-with-approval:
+          requires:
+            - approve
+          filters:
+            branches:
+              only: master
