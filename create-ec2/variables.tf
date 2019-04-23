@@ -2,12 +2,6 @@ variable "aws_region" {
   description = "Region for the VPC"
 }
 
-variable "ec2-ip" {
-  description = "Elastic IP for EC2 instance"
-}
-variable "ec2-user" {
-  description = "Username for EC2 instance"
-}
 variable "key_path" {
   description = "SSH Private Key path"
 }
