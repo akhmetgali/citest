@@ -1,6 +1,6 @@
 version: 2
 working_directory:
-  create-ec2
+  ./create-ec2
 jobs:
   build:
     docker:
