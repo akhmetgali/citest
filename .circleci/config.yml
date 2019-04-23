@@ -17,8 +17,12 @@ jobs:
 
       - run:
           name: Format
-          command: terraform fmt
+          command: |
+            cd create-ec2
+            terraform fmt
 
       - run:
           name: Plan
-          command: terraform plan
+          command: |
+            cd create-ec2
+            terraform plan
