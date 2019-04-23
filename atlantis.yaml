@@ -5,7 +5,10 @@ projects:
     dir: create-ec2
     workspace: default
     terraform_version: v0.11.0
-    apply_requirements: [mergeable]
+    apply_requirements: [approved, mergeable]
+    autoplan:
+      when_modified: ["*.tf", "../modules/**.tf"]
+      enabled: true
     workflow: myworkflow
 workflows:
   myworkflow:
