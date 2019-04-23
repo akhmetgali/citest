@@ -2,7 +2,7 @@ version: 3
 automerge: true
 projects:
   - name: citest
-    dir: .
+    dir: citest
     workspace: default
     terraform_version: v0.11.0
     autoplan:
