@@ -10,7 +10,8 @@ resource "aws_instance" "test-instance" {
   key_name = "${var.key_name}"
   associate_public_ip_address = "true"
   tags {
-    Name = "CirceCI-Terraform-Test",
-    Environment = "Test-and-CI"
+    Name = "CirceCI-Terraform-Test-Atlantis",
+    Environment = "Test-and-CI",
+    New = "Atlantis"
   }
 }
