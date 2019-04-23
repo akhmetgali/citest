@@ -1,8 +1,8 @@
 version: 3
 automerge: true
 projects:
-  - name: citest
-    dir: citest
+  - name: create-ec2
+    dir: create-ec2
     workspace: default
     terraform_version: v0.11.0
     workflow: myworkflow
