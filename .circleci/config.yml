@@ -60,7 +60,7 @@ jobs:
           name: Apply
           command: |
             cd create-ec2
-            terraform apply -var-file=terraform.tfvars
+            terraform apply --auto-approve -var-file=terraform.tfvars
 
 workflows:
   version: 2
