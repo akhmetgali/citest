@@ -1,16 +1,22 @@
 version: 2
+working_directory:
+  ~/create-ec2
 jobs:
   build:
     docker:
-      - image: debian:stretch
+      - image: hashicorp/terraform:light
 
     steps:
       - checkout
 
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: Init
+          command: terraform init
 
       - run:
-          name: Print the Current Time
-          command: date
+          name: Format
+          command: terraform fmt
+
+      - run:
+          name: Plan
+          command: terraform plan
