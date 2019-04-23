@@ -11,7 +11,9 @@ jobs:
 
       - run:
           name: Init
-          command: terraform init
+          command: |
+            cd create-ec2
+            terraform init
 
       - run:
           name: Format
