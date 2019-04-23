@@ -51,7 +51,7 @@ jobs:
           name: Plan
           command: |
             cd create-ec2
-            terraform plan -var-file=cterraform.tfvars
+            terraform plan -var-file=terraform.tfvars
   apply:
     <<: *default_config
     steps:
