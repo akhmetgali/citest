@@ -5,9 +5,6 @@ projects:
     dir: citest
     workspace: default
     terraform_version: v0.11.0
-    autoplan:
-      when_modified: ["*.tf", "../modules/**.tf"]
-      enabled: true
     workflow: myworkflow
 workflows:
   myworkflow:
