@@ -25,4 +25,4 @@ jobs:
           name: Plan
           command: |
             cd create-ec2
-            terraform plan
+            terraform plan -var-file=terraform.tfvars
