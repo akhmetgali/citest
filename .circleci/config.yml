@@ -17,6 +17,13 @@ repo_cache_key: &repo_cache_key
 restore_repo: &restore_repo
   restore_cache:
     key: *repo_cache_key
+save_repo: &save_repo
+  save_cache:
+    key: *repo_cache_key
+    paths:
+      - *working_directory
+
+
 jobs:
   build:
     <<: *default_config
@@ -35,6 +42,7 @@ jobs:
           command: |
             cd create-ec2
             terraform fmt
+      - *save_repo
   plan:
     <<: *default_config
     steps:
