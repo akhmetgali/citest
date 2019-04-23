@@ -9,6 +9,14 @@ default_config: &default_config
   docker:
     - image: *base_image
   working_directory: *working_directory
+
+repo_cache_key: &repo_cache_key
+                  v1-repo-{{ .Branch }}-{{ .Revision }}
+
+# Step to restore repository from cache
+restore_repo: &restore_repo
+  restore_cache:
+    key: *repo_cache_key
 jobs:
   build:
     <<: *default_config
@@ -30,6 +38,7 @@ jobs:
   plan:
     <<: *default_config
     steps:
+      - *restore_repo
       - run:
           name: Plan
           command: |
@@ -38,6 +47,7 @@ jobs:
   apply:
     <<: *default_config
     steps:
+      - *restore_repo
       - run:
           name: Apply
           command: |
