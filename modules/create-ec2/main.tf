@@ -15,3 +15,10 @@ resource "aws_instance" "test-instance" {
     New = "Atlantis"
   }
 }
+
+output "test_ip" {
+  value = "${aws_instance.test-instance.public_ip}"
+}
+output "what" {
+  value = "ERROR OR OK"
+}
