@@ -22,14 +22,6 @@ resource "aws_instance" "test-instance" {
 }
 
 
-
-output "test_ip" {
-  value = "${aws_instance.test-instance.public_ip}"
-}
-output "what" {
-  value = "ERROR OR OK"
-}
-
 output "new" {
   value = "Test-BRANCH"
 }
