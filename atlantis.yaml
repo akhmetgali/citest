@@ -10,3 +10,6 @@ projects:
     dir: ./modules/create-ec2-terragrunt
     workflow: terragrunt
 
+  - name: ec2-terragrunt
+    dir: ./modules/ec2-terragrunt
+    workflow: terragrunt
