@@ -6,7 +6,7 @@ terraform {
   backend "s3" {}
 }
 
-resource "aws_instance" "test-instance" {
+resource "aws_instance" "test-instance111" {
   ami = "ami-011b6930a81cd6aaf"
   instance_type = "${var.instance_type}"
   subnet_id = "${var.subnet_id}"
