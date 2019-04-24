@@ -74,12 +74,13 @@ workflows:
           type: approval
           requires:
             - plan
-          filters:
-            branches:
-              only: master
+
       - apply:
           requires:
             - approve
           filters:
             branches:
-              only: master
+              only:
+                - /dev*/
+                - /story/DEVOPS*/
+                - /DEVOPS*/
