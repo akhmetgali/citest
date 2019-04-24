@@ -7,6 +7,7 @@ terraform {
 }
 
 resource "aws_instance" "test-instance" {
+  count = "2"
   ami = "${var.ami}"
   instance_type = "${var.instance_type}"
   subnet_id = "${var.subnet_id}"
@@ -14,17 +15,13 @@ resource "aws_instance" "test-instance" {
   key_name = "${var.key_name}"
   associate_public_ip_address = "true"
   tags {
-    Name = "Atlantis-Terragrunt",
+    Name = "Atlantis-Test-Terragrunt-",
     Environment = "Test-and-CI",
     New = "Atlantis"
   }
 }
 
 
-
-output "test_ip" {
-  value = "${aws_instance.test-instance.public_ip}"
-}
-output "what" {
-  value = "ERROR OR OK"
+output "new" {
+  value = "Test-BRANCH"
 }
