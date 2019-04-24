@@ -6,7 +6,7 @@ terragrunt = {
 
     config {
       encrypt = true
-      bucket = "terraform-tfstate-file-storage-us-east"
+      bucket = "atlantis-tfstates"
       key = "devops-1839-vault-cluster-test.tfstate"
       region = "us-west-1"
       encrypt = true
