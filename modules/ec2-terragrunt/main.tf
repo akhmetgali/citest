@@ -15,7 +15,7 @@ resource "aws_instance" "test-instance" {
   key_name = "${var.key_name}"
   associate_public_ip_address = "true"
   tags {
-    Name = "${element("Atlantis-Test-Terragrunt-", count.index)}",
+    Name = "Atlantis-Test-Terragrunt-",
     Environment = "Test-and-CI",
     New = "Atlantis"
   }
