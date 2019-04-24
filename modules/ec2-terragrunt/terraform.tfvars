@@ -7,7 +7,7 @@ terragrunt = {
     config {
       encrypt = true
       bucket = "atlantis-tfstates"
-      key = "devops-1839-vault-cluster-test.tfstate"
+      key = "cluster-test.tfstate"
       region = "us-west-1"
       encrypt = true
       dynamodb_table = "terraform-lock-table"
