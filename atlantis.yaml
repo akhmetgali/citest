@@ -1,15 +1,26 @@
 version: 3
 automerge: true
+
 projects:
   - name: create-ec2
     dir: ./modules/create-ec2
+    workflow: myworkflow
     workspace: default
     terraform_version: v0.11.0
     apply_requirements: [mergeable]
     autoplan:
       when_modified: ["*.tf", "../modules/**/*.tf"]
       enabled: true
-    workflow: myworkflow
+
+  - name: create-ec2-terragrunt
+    dir: ./modules/create-ec2-terragrunt
+    workflow: terragrunt
+    workspace: default
+    terraform_version: v0.11.0
+    apply_requirements: [mergeable]
+    autoplan:
+      when_modified: ["*.tf", "../modules/**/*.tf"]
+      enabled: true
 
 workflows:
   myworkflow:
@@ -22,3 +33,11 @@ workflows:
       steps:
         - run: echo "test apply"
         - apply
+
+  terragrunt:
+    plan:
+      steps:
+        - run: terragrunt plan -no-color -out ./ec2.plan
+    apply:
+      steps:
+        - run: terragrunt apply -no-color ./ec2.plan
