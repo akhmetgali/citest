@@ -5,7 +5,7 @@ projects:
     dir: ./modules/create-ec2
     workspace: default
     terraform_version: v0.11.0
-    apply_requirements: [approved, mergeable]
+    apply_requirements: [mergeable]
     autoplan:
       when_modified: ["*.tf", "../modules/**/*.tf"]
       enabled: true

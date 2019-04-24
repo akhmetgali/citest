@@ -22,7 +22,3 @@ output "test_ip" {
 output "what" {
   value = "ERROR OR OK"
 }
-
-output "booo" {
-  value = "BOoOoO"
-}
