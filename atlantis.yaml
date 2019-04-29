@@ -9,4 +9,3 @@ projects:
   - name: create-ec2-terragrunt
     dir: ./modules/create-ec2-terragrunt
     workflow: terragrunt
-
